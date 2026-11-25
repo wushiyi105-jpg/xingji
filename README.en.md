@@ -6,7 +6,7 @@ Give it a list of attractions and a few days off, and it lays out an itinerary y
 
 The split is rigid: **scheduling is computed locally, the model never touches a character of it; the model only narrates, and while narrating it may not add places or invent numbers.**
 
-![demo](assets/demo.gif)
+![usage](assets/demo.gif)
 
 ## Why the model does not schedule
 

@@ -1,6 +1,6 @@
 # 行迹 xingji
 
-[![test](https://github.com/wushiyi105-jpg/xingji/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/xingji/actions)
+[![test](https://github.com/wushiyi105-jpg/xingji/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/xingji/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 给一份景点清单和几天假，排出一份走得完的行程，再让模型把它讲成人话。
 

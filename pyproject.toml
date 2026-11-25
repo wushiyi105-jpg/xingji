@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xingji"
+version = "0.1.0"
+description = "行程排程：容量、闭馆日、通勤、预算全在本地算，模型只写解说"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+[project.scripts]
+xingji = "xingji.cli:main"
+
+[tool.setuptools]
+packages = ["xingji"]

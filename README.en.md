@@ -131,6 +131,53 @@ Start the Web UI:
 python -m xingji serve      # http://127.0.0.1:8776
 ```
 
+Run in Docker (the container uses the default port 8776):
+
+```bash
+docker build -t xingji .
+docker run -p 8776:8776 xingji
+```
+
+## 🤔 Why not just ask a general LLM
+
+A general model will give you a three-day Chengdu itinerary. Xingji adds the one thing it cannot: an itinerary you can actually walk.
+
+1. **Scheduling is computed locally** — distances between sights, how many per day, which day something is closed, all come from the local scheduler with the model kept out of it. The same list, days and constraints produce the same itinerary, and it can be recomputed.
+2. **The model only narrates** — it turns the itinerary into readable prose but may not add places or estimate numbers such as "about 40 minutes"; every place and duration must exist in the list or the plan, or it is removed.
+3. **Lists and plans stay local** — imported sights, opening hours and notes stay on this machine; a model call sends only the finished plan.
+4. **Planning works offline** — `plan` never calls a model, so a workable itinerary comes out without network; only `story` needs a key, and its absence does not stop you leaving the house with the plan.
+
+## 🎯 Use cases
+
+- **Three days with elderly parents**: list the sights, mark the must-sees, and schedule by days and stamina so the plan is walkable first, then let the model write the version you send to family.
+- **Half a day free on a business trip**: give the half-day window and two or three nearby sights and get an order within a couple of streets, not a cross-city wish list.
+- **Friends visiting and asking you to plan**: drop the list in, get a daily order plus the places that need booking, and you only confirm which days are closed.
+
+## 🗺 Roadmap
+
+- **Travel time completion**: today it schedules by listed distances; add metro/taxi ranges to make the plan realistic.
+- **Opening hours and closing days**: fold "closed Mondays" into scheduling so it never plans a place you cannot enter.
+- **Two plan variants**: a compact and a relaxed version from the same list, for the traveller to choose.
+- **Calendar export**: generate `.ics` so each day lands in the phone calendar.
+- **Stamina profiles**: elderly, with children, solo — three levels affecting sights per day and walking distance.
+
+## ❓ FAQ
+
+**Where do I get an API key?**
+Only `story` (turning the plan into prose) needs a model. Zhipu or DeepSeek both work via `LLM_API_KEY` in `.env`; `plan` does not need one.
+
+**Where is data stored, and is it uploaded?**
+Sight lists, plans and notes are in a local database; a model call sends the finished plan, not your original list.
+
+**Does it work without a key?**
+Yes. `plan` is pure local scheduling and works offline; you simply miss the `story` narration.
+
+**How do I switch models?**
+Change `LLM_BASE_URL`, `LLM_MODEL` and `LLM_API_KEY` as in `.env.example`; scheduling is model-independent.
+
+**Why does the itinerary look tight?**
+Because it schedules by the distances in your list and your day count; an optimistic list or missing travel time makes it tight. Add travel time to the list and re-plan.
+
 ## List format
 
 One spot per line, pipe separated:

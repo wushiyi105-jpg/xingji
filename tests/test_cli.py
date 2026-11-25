@@ -6,7 +6,7 @@ import unittest
 from contextlib import redirect_stdout
 from unittest.mock import patch
 
-from xingji import cli, llm, store
+from xingji import cli, llm
 
 LIST = "\n".join([
     "武侯祠 | 武侯区 | 120 | 50 | 全周 | 上午 | 1 | 红墙竹影",

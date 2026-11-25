@@ -8,7 +8,7 @@ from __future__ import annotations
 import json
 import re
 
-from . import llm, poi as P, verify
+from . import llm, verify
 
 SYSTEM = """你在帮朋友写一份旅行安排，语气像发给同行人的私聊，不是旅行网站。
 

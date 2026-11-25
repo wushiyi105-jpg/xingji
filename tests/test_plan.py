@@ -1,6 +1,6 @@
 import unittest
 
-from xingji import plan, poi
+from xingji import plan
 
 
 def mk(name, area="A", minutes=60, price=0.0, open_days=None, best="全天", must=False):

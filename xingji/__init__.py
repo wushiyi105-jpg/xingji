@@ -2,4 +2,4 @@
 
 __version__ = "1.0.0"
 
-from . import plan, poi, story, store, verify  # noqa: F401
+from . import plan, poi, store, story, verify  # noqa: F401

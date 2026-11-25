@@ -1,10 +1,8 @@
-import json
 import os
 import tempfile
 import unittest
 
 from xingji import store
-
 
 POI = {"name": "武侯祠", "area": "武侯区", "minutes": 120, "price": 50.0,
        "open_days": None, "open_spec": "全周", "best_time": "上午", "must": True, "note": "红墙"}

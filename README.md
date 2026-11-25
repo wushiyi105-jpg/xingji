@@ -1,6 +1,6 @@
 # 行迹 xingji
 
-[![test](https://github.com/wushiyi105-jpg/xingji/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/xingji/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![test](https://github.com/wushiyi105-jpg/xingji/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/xingji/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) [![codecov](https://codecov.io/gh/wushiyi105-jpg/xingji/branch/main/graph/badge.svg)](https://codecov.io/gh/wushiyi105-jpg/xingji)
 
 给一份景点清单和几天假，排出一份走得完的行程，再让模型把它讲成人话。
 
@@ -97,6 +97,20 @@
 **数字核验**是另一套：带单位的数字（元、分钟、小时）必须落在行程里真实出现过的集合里。第一次跑时「今天门票一共 105 元」被误报——105 是每天的门票合计，我只把单个点的票价放进了白名单，漏了每天的合计。补上之后 0 条。
 
 距离（公里/千米）一律提醒：清单里根本没有距离数据，模型写出来就是编的。
+
+## 数据流
+
+一条数据在这几个模块之间怎么走：
+
+```mermaid
+flowchart LR
+    A[景点清单] --> B[poi.py<br/>时长 · 票价 · 闭馆日]
+    B --> C[plan.py<br/>按天装箱 · 算通勤 · 插午饭]
+    C --> D[story.py<br/>排程结果喂模型]
+    D --> E[llm.py<br/>只写解说]
+    E --> F{verify.py<br/>地名与数字核验}
+    F --> G[store.py → cli.py / web.py / Markdown]
+```
 
 ## 快速开始
 

@@ -61,7 +61,7 @@ def parse_open(spec: str) -> list[int] | None:
         a, b = _day_num(a_s), _day_num(b_s)
         if a is None or b is None:
             raise PoiError(f"看不懂的开放日：{spec}")
-        days = list(range(a, b + 1)) if a <= b else list(range(a, 7)) + list(range(0, b + 1))
+        days = list(range(a, b + 1)) if a <= b else list(range(a, 7)) + list(range(b + 1))
     else:
         days = [d for d in (_day_num(t) for t in re.split(r"[,、/\s]+", s)) if d is not None]
 

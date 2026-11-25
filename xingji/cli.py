@@ -7,7 +7,10 @@ import json
 import os
 from datetime import datetime
 
-from . import plan as PL, poi as P, store, story as ST
+from . import plan as PL
+from . import poi as P
+from . import store
+from . import story as ST
 
 _OPENED: list = []
 

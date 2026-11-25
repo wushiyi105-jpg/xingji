@@ -40,7 +40,6 @@ def schedule(pois: list[dict], days: int, minutes_per_day: int = 480,
              budget: float | None = None, travel: int = TRAVEL_MIN) -> dict:
     """把景点排进 days 天。返回每天的安排 + 排不进去的及其原因。"""
     must_names = [m for m in (must or []) if m]
-    must_pois = [p for p in pois if p["name"] in must_names]
     unknown_must = [m for m in must_names if not P.find(pois, m)]
     left = _order(list(pois))
 

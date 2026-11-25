@@ -2,7 +2,6 @@ import unittest
 
 from xingji import verify
 
-
 POIS = [
     {"name": "武侯祠", "area": "武侯区"},
     {"name": "大熊猫繁育研究基地", "area": "成华区"},

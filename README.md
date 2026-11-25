@@ -1,5 +1,7 @@
 # 行迹 xingji
 
+[![test](https://github.com/wushiyi105-jpg/xingji/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/xingji/actions)
+
 给一份景点清单和几天假，排出一份走得完的行程，再让模型把它讲成人话。
 
 分工很硬：**排程在本地算，一个字都不让模型碰；模型只负责讲，讲的时候不许新增地点、不许自己估数字。**

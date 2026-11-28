@@ -18,7 +18,7 @@ MAX_BODY = 400_000
 PAGE = """<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>行迹 · 行程规划</title>
+<title>行迹 · 今天怎么走</title>
 <style>
 :root{--bg:#0d1117;--card:#161b22;--line:#30363d;--text:#c9d1d9;--dim:#8b949e;
 --ok:#7ee787;--warn:#e3b341;--bad:#ff7b72;--blue:#79c0ff}
@@ -50,8 +50,64 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .tips li{margin:4px 0}
 .err{color:var(--bad);font-size:13px}
 .spin{color:var(--dim);font-size:13px}
+
+h1{font-size:clamp(31px,5vw,39px);line-height:1.26}
+.prod{display:block;font-size:11px;line-height:1.4;letter-spacing:.18em;font-weight:650;margin-bottom:8px;opacity:.72}
+.lede,.sub{max-width:62ch;line-height:1.75}
+.route{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:0 0 20px;border:1px solid var(--line);background:var(--line)}
+.route span{padding:11px 13px;background:var(--card);font-size:12px;line-height:1.5}
+.route b{display:block;font-size:10px;letter-spacing:.1em;margin-bottom:3px;opacity:.66}
+button{min-height:46px}
+input,select{min-height:44px}
+@media(max-width:680px){
+  .wrap{padding:20px 16px 56px}
+  .route{grid-template-columns:1fr}
+  h1{font-size:30px!important}
+  .row>div{min-width:100%!important}
+  button{width:100%}
+}
+
+body{background:#efe4d1;color:#23384a;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:980px}
+header{padding:10px 0 20px;border-bottom:3px solid #1d617e;margin-bottom:20px}
+header h1{font-family:"Songti SC","SimSun",Georgia,serif;font-size:38px;line-height:1.26}
+header p{color:#6d6458;font-size:14px}
+.card{background:#fbf7ef;border:1px solid #dbcbb5;border-radius:2px;box-shadow:none}
+button{background:#1d617e;border-radius:2px;letter-spacing:.05em}
+button:hover{background:#174f67}
+textarea,input,select{background:#fffdf8;border-color:#d7c6ae;border-radius:2px}
+textarea:focus,input:focus,select:focus{border-color:#1d617e;box-shadow:0 0 0 2px #d5e4e9}
+.item{border-left:3px solid #1d617e}
+h3{color:#1d617e;letter-spacing:.08em}
+
+
+/* palette-normalized */
+:root{--bg:#efe4d1;--card:#fbf7ef;--ink:#23384a;--text:#23384a;--dim:#6d6458;--line:#dbcbb5;--accent:#1d617e}
+
+/* polish-batch1 */
+button.ghost,button.secondary{background:transparent!important;color:#1d617e!important;border:1px solid #dbcbb5!important}
+
+/* mobile-32 */
+
+@media(max-width:760px){
+  main{grid-template-columns:1fr!important}
+  aside{border-right:0!important;border-bottom:1px solid #dbcbb5;width:auto!important}
+  section{padding:16px!important}
+  .row{flex-wrap:wrap!important}
+  .row>div{min-width:100%!important}
+  h1{font-size:30px!important}
+  .route{grid-template-columns:1fr!important}
+  button{min-height:48px}
+  pre{overflow-x:auto}
+}
+
+/* mobile-height */
+@media(max-width:760px){main{min-height:auto!important}aside{min-height:0!important}}
 </style></head><body><div class="wrap">
-<h1>行迹 <span style="color:var(--dim);font-size:13px;font-weight:400">本地排程 · 模型只讲不编</span></h1>
+<h1><span class="prod">行迹</span>今天怎么走，才不误车 <span style="color:var(--dim);font-size:13px;font-weight:400">本地排程 · 模型只讲不编</span></h1>
+  <div class="route" aria-label="任务步骤"><span><b>01</b>定出发和预约</span><span><b>02</b>排通勤与缓冲</span><span><b>03</b>带走当天路线</span></div>
+
+  <p class="sub">给安排两三天周末游的人：用确认过的营业时间、预约截止和通勤排程；下雨或误车，只重排受影响半天。</p>
 <div class="sub">塞不下的点会明确告诉你为什么没排进去，而不是被模型悄悄挪到别的天。</div>
 
 <div class="panel">
